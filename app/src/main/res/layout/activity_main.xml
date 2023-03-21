@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="under the sea (이름)"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(로고)"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="50dp"
+        android:textSize="30dp"/>
+
+    <!--    버튼 3개 담는 레이아웃-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="120dp"
+        >
+        <!--  첫번째 버튼-->
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="110dp"
+            android:background="@drawable/main_button"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/button1"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="금어기 판별"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="1dp"
+                    android:text="물고기 이미지, 물고기 길이, 현 위치를
+                입력하면 채집가능한 어종인지 알려줍니다. "
+                    android:textSize="13dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+            <!--   두번째 번튼   -->
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="110dp"
+            android:background="@drawable/main_button"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/button2"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="내 판별 기록"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="1dp"
+                    android:text="지금까지 판별한 금어기 기록을 볼 수
+                    있습니다. "
+                    android:textSize="13dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <!--세번째 버튼-->
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="110dp"
+            android:background="@drawable/main_button"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/button3"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="물고기 도감"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="1dp"
+                    android:text="물고기에 대한 더 자세한 정보를 볼 수
+                    있습니다. "
+                    android:textSize="13dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
