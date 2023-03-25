@@ -41,6 +41,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:orientation="horizontal"
+            android:id="@+id/buttno1"
             >
 
             <ImageView

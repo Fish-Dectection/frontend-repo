@@ -74,6 +74,7 @@
         android:layout_gravity="center"
         android:background="@drawable/imageview_border"
         android:layout_marginTop="10dp"
+        android:id="@+id/inputimage"
         />
 
     <TextView
@@ -89,7 +90,8 @@
         android:layout_gravity="center"
         android:hint="물고기 길이를 입력해 주세요."
         android:textColorHint="@color/grey"
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:id="@+id/length_edit"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,7 +106,8 @@
         android:layout_gravity="center"
         android:hint="물고기 길이를 입력해 주세요."
         android:textColorHint="@color/grey"
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:id="@+id/region_edit"/>
 
     <Button
         android:layout_width="340dp"
@@ -116,6 +119,7 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="20dp"
+        android:id="@+id/confirm_btn"
         />
 <!--하단바 시작-->
     <LinearLayout
@@ -130,7 +134,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:orientation="horizontal"
         android:layout_marginLeft="7dp"
         >
