@@ -7,6 +7,11 @@ android {
     namespace 'com.example.fishdetection'
     compileSdk 33
 
+    buildFeatures {
+        // 뷰 바인딩 활성화
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.example.fishdetection"
         minSdk 24
@@ -30,9 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
+
 }
 
 dependencies {
@@ -46,4 +49,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
