@@ -50,6 +50,7 @@
         android:layout_gravity="center"
         android:background="@drawable/imageview_border"
         android:layout_marginTop="10dp"
+        android:id="@+id/inputimage"
         />
 <!-- 어종 이름 결과 리니어 시작   -->
     <LinearLayout
