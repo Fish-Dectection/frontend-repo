@@ -63,7 +63,8 @@
             android:layout_height="35dp"
             android:src="@drawable/download"
             android:layout_marginLeft="260dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:id="@+id/downloadBtn"/>
 
     </LinearLayout>
 <!--    image 텍스트랑 다운로드 버튼 레이어 끝-->
