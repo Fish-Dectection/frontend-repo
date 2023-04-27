@@ -1,5 +1,7 @@
 package com.example.fishdetection
 
+import android.media.Image
+
 data class PostModel (
     //val data = listOf
     val fish_length: Double? = null,
@@ -9,6 +11,9 @@ data class PostModel (
 
 data class PostResult (
 //    val task_id: Int?=null,
-    val response: String?=null
+    val loction: String?=null,
+    val length : String?=null,
+    val image: Image? = null
+
 
 )
