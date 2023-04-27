@@ -1,5 +1,6 @@
 package com.example.fishdetection
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -71,9 +72,14 @@ class Result : AppCompatActivity() {
         var len1 = len[1].split(",")
         Log.d("로그 길이","${len1[8]}")
         if(len1[8] != null){
-            result_binding.regionlen.setText(len1[8])
+            result_binding.regionlen.setText(len1[8]+"  " + "cm")
         }
 
+        val input_intent = Intent(this,Input_info::class.java)
 
+        result_binding.retry.setOnClickListener {
+            startActivity(input_intent)
+            finish()
+        }
     }
 }
