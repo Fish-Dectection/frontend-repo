@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="판별이 잘못 되었나요?"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
+    <!--배너1 시작-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/banner"
+        android:layout_marginTop="15dp"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/banner_image"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="입력한 물고기 이미지"
+            android:textColor="@color/black"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="13dp"
+            android:textStyle="bold"
+            android:textSize="19dp"/>
+
+    </LinearLayout>
+    <!--배너1 끝-->
+
+    <ImageView
+        android:layout_width="342dp"
+        android:layout_height="181dp"
+        android:layout_gravity="center"
+        android:background="@drawable/imageview_border"
+        android:layout_marginTop="10dp"
+        android:id="@+id/inputimage"
+        />
+    <!-- 어종 이름 결과 리니어 시작   -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name :"
+            android:textSize="15dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결과"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:id="@+id/fname"/>
+
+    </LinearLayout>
+    <!--    어종 이름 결과 끝-->
+
+    <!--배너2 시작-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/banner"
+        android:layout_marginTop="30dp"
+        >
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/banner_image"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알려준 응답 :"
+            android:textColor="@color/black"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="13dp"
+            android:textStyle="bold"
+            android:textSize="19dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textColor="@color/black"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="13dp"
+            android:textStyle="bold"
+            android:textSize="19dp"/>
+
+    </LinearLayout>
+    <!--배너2 끝-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="어떤 물고기라고 생각하시나요?"
+        android:textSize="16dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="물고기 이름를 입력해 주세요."
+        android:textColorHint="@color/grey"
+        android:textSize="15dp"
+        android:id="@+id/length_edit"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가 의견이 있으면 적어주세요"
+        android:textSize="16dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:layout_marginTop="5dp"
+        android:layout_width="340dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:textColorHint="@color/grey"
+        android:textSize="15dp"
+        android:background="@drawable/result_bod_border"
+        />
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="63dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/select_button"
+        android:text="confirm"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:id="@+id/confirm_btn"
+        />
+
+
+    <!--하단바 시작-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginTop="130dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="7dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn2"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn3"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn4"/>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
