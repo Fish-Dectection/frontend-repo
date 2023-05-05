@@ -21,7 +21,7 @@ interface ApiForm {
     ): Call<JsonObject>
 
     companion object { // static 처럼 공유객체로 사용가능함. 모든 인스턴스가 공유하는 객체로서 동작함.
-        private const val BASE_URL = "http://192.168.204.187:8000/" // 주소 "127.0.0.1:8000/caught_fish/"  local =http://10.0.2.2:8000/ mac 주소 192.168.207.39:8000
+        private const val BASE_URL = "http://192.168.205.139:8000/" // 주소 "127.0.0.1:8000/caught_fish/"  local =http://10.0.2.2:8000/ mac 주소 192.168.207.39:8000
 
         fun create(): ApiForm {
 
