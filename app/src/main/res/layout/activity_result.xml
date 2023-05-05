@@ -53,6 +53,7 @@
         android:id="@+id/inputimage"
         />
 <!-- 어종 이름 결과 리니어 시작   -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,40 +65,111 @@
             android:text="name :"
             android:textSize="15dp"
             android:layout_marginLeft="38dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="10dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="결과"
-            android:textSize="16dp"
+            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="12dp"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:id="@+id/fname"/>
 
     </LinearLayout>
 <!--    어종 이름 결과 끝-->
 <!--    어종 설명 결과 리니어 시작-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="365dp"
+        android:layout_height="130dp"
+        android:orientation="vertical"
+        android:background="@drawable/accuracy_des_border"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center">
+        <!--    정확도 피즈백 리니어 시작-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="accuracy :"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결과"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/feedback"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="70dp"
+                />
+            <!--    밑줄 리니어 시작-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="결과가 잘못된 것 같나요?"
+                    android:textSize="11dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/bold_grey"
+                    />
+                <View
+                    android:layout_width="110dp"
+                    android:layout_height="0.6dp"
+                    android:background="@color/bold_grey"
+                    android:layout_marginLeft="3dp"
+                    />
+
+            </LinearLayout>
+            <!--    밑줄 리니어 끝-->
+
+        </LinearLayout>
+        <!--    정확도 피즈백 리니어 끝-->
+        <!--    디스크립션 리니어 시작-->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description :"
-            android:textSize="15dp"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="8dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="결과"
-            android:textSize="16dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/black"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="description :"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결과"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <!--    디스크립션 리니어 끝-->
 
     </LinearLayout>
 <!--    어종 설명 결과 끝-->
@@ -107,7 +179,8 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@color/banner"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
+
         >
 
         <ImageView
@@ -131,7 +204,7 @@
     <TextView
         android:id="@+id/possible"
         android:layout_width="230dp"
-        android:layout_height="47dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="채집 가능합니다."
         android:layout_marginTop="20dp"
@@ -144,14 +217,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="금어기 :"
             android:textSize="14dp"
-            android:layout_marginLeft="65dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="15dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -176,7 +250,7 @@
             android:layout_height="wrap_content"
             android:text="금지체장 :"
             android:textSize="14dp"
-            android:layout_marginLeft="65dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="8dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -190,18 +264,7 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="335dp"
-        android:layout_height="58dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/select_button"
-        android:text="retry"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textSize="20dp"
-        android:id="@+id/retry"
-        />
+
 
     <!--하단바 시작-->
     <LinearLayout
