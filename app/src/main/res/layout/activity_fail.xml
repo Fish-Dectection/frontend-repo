@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="금어기 판별"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
+    <!--배너1 시작-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/banner"
+        android:layout_marginTop="15dp"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/banner_image"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="어종 식별 결과"
+            android:textColor="@color/black"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="13dp"
+            android:textStyle="bold"
+            android:textSize="19dp"/>
+
+    </LinearLayout>
+    <!--배너1 끝-->
+
+    <ImageView
+        android:layout_width="342dp"
+        android:layout_height="181dp"
+        android:layout_gravity="center"
+        android:background="@drawable/imageview_border"
+        android:layout_marginTop="10dp"
+        android:id="@+id/inputimage"
+        />
+    <!--    금지체장 결과 출력 리니어-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인식 실패"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:id="@+id/regionlen"/>
+
+    </LinearLayout>
+
+
+
+    <!--하단바 시작-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginTop="130dp"
+            android:background="@color/grey"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="7dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn2"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn3"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buttom_btn4"/>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
