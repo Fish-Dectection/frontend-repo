@@ -3,6 +3,7 @@ package com.example.fishdetection
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
@@ -14,7 +15,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.fishdetection.databinding.ActivityMainBinding
 import com.google.gson.JsonObject
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -24,22 +27,86 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import android.Manifest
+import android.widget.Toast
+import androidx.core.content.FileProvider
 
 
 class Input_info : AppCompatActivity() {
 
     private val OPEN_GALLERY = 1
+    private var checknum = 0
 
     private lateinit var input_binding: ActivityInputInfoBinding
     val api = ApiForm.create()
 
     private var postimg = ""
+    private var postimg2: Bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
 
     private fun openGallery(){
+        checknum = 0
         val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.setType("image/*")
         startActivityForResult(intent,OPEN_GALLERY)
     }
+
+    // 카메라 앱 열기
+    private fun openCamera() {
+        checknum = 1
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+
+
+    //카메라 관련
+    //private lateinit var binding: ActivityMainBinding
+    private val REQUEST_IMAGE_CAPTURE = 1
+
+    // 카메라 권한 체크
+    private fun checkCameraPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    // 카메라 권한 요청
+    private fun requestCameraPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.CAMERA),
+            REQUEST_IMAGE_CAPTURE
+        )
+    }
+
+    // 권한 요청 결과 처리 함수
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_IMAGE_CAPTURE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    openCamera()
+                } else {
+                    Toast.makeText(this, "카메라 권한을 허용해주세요.", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+            else -> {
+                // Ignore all other requests.
+            }
+        }
+    }
+
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +117,14 @@ class Input_info : AppCompatActivity() {
             openGallery()
         }
 
+        input_binding.cameraBtn.setOnClickListener{
+            if (checkCameraPermission()) {
+                openCamera()
+            } else {
+                requestCameraPermission()
+            }
+        }
+
     }
 
     @Override
@@ -57,9 +132,19 @@ class Input_info : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         Log.d("로그 처음","${data?.data}")
+        //Log.d("로그 처음2","${data?.extras}")
+
+
+        //카메라 이미지 등록 (한개로 못 합티나?)
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+//            val imageBitmap = data?.extras?.get("data") as Bitmap
+//            input_binding.inputimage.setImageBitmap(imageBitmap)
+//        }
 
         if(resultCode == Activity.RESULT_OK){
-            if(requestCode == OPEN_GALLERY){
+
+            //갤러리 열었을때
+            if(requestCode == OPEN_GALLERY && checknum == 0){
                 val currentImg : Uri? = data?.data
 
                 postimg = currentImg.toString()
@@ -73,8 +158,19 @@ class Input_info : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
+
+            //카메라 열었을때
+            else if(requestCode == OPEN_GALLERY && checknum == 1){
+                Log.d("로그 사진 확인","들어왔나?")
+                val imageBitmap = data?.extras?.get("data") as Bitmap
+                Log.d("로그 사진 확인","${data?.extras}")
+                Log.d("로그 사진 확인","${imageBitmap}")
+
+                input_binding.inputimage.setImageBitmap(imageBitmap)
+            }
+
             else{
-                Log.d("ActivityResult","someting wrong")
+                Log.d("로그ActivityResult","someting wrong")
             }
         }
 
@@ -95,9 +191,22 @@ class Input_info : AppCompatActivity() {
 
 
         input_binding.confirmBtn.setOnClickListener{
-            val currentImg : Uri? = data?.data
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentImg)
-            Log.d("비트맵 확인2","${bitmap.toString()}")
+
+            var bitmap: Bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+
+            //갤러리 일때
+            if(checknum==0){
+                val currentImg : Uri? = data?.data
+                bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentImg)
+                Log.d("비트맵 확인2","${bitmap.toString()}")
+            }
+
+            //카메라 일때
+            else if(checknum==1){
+                bitmap = data?.extras?.get("data") as Bitmap
+                postimg2 = bitmap
+            }
+
 
             val image_url = bitmapToFile(bitmap,"image_url")
 
@@ -161,11 +270,62 @@ class Input_info : AppCompatActivity() {
 
                     val result = response.body().toString()
 
-                    result_intent.putExtra("result","${result}")
-                    Log.d("로그 result_img 전달 전 확인","${postimg}")
-                    result_intent.putExtra("result_img","${postimg}")
-                    startActivity(result_intent)
-                    finish()
+
+
+                    if(checknum==0){
+                        result_intent.putExtra("result","${result}")
+                        Log.d("로그 result_img 전달 전 확인","${postimg}")
+                        result_intent.putExtra("result_img","${postimg}")
+                        result_intent.putExtra("result2","null")
+                        result_intent.putExtra("result_img2","null")
+                        startActivity(result_intent)
+                        finish()
+                    }
+                    else if(checknum==1){
+
+//                        val filePath = "/storage/emulated/0/Android/data/com.example.fishdetection/files/result_file"
+                        //val filePath = getExternalFilesDir(null)?.absolutePath + "/result_file"
+
+
+                        //val context: Context = applicationContext
+
+                        result_intent.putExtra("result","null")
+                        result_intent.putExtra("result_img","null")
+
+                        result_intent.putExtra("result2","${result}")
+                        Log.d("로그 postimg2","${postimg2}")
+
+                        val result_file= bitmapToFile(postimg2,"result_file")
+                        Log.d("로그 result_img 전달 전 확인","${result_file}")
+
+                        result_intent.putExtra("result_img2","${result_file}")
+
+
+                        //파일에 저장
+//                        val fileContent = result_file.toString()
+
+//                        try {
+//                            val file = File(filePath)
+//                            file.parentFile?.mkdirs() // 부모 디렉터리가 없으면 생성합니다.
+//                            file.writeText(fileContent) // 파일에 데이터를 씁니다.
+//                            Log.d("로그", "파일 저장 완료: $filePath")
+//                        } catch (e: IOException) {
+//                            Log.e("로그", "파일 저장 실패: $e")
+//                        }
+
+                        //일단 file 형식 바꾸는 것
+//                        val packagename = "com.example.fishdetection.fileprovider"
+//                        val result_uri = FileProvider.getUriForFile(context, packagename, result_file!!)
+//                        Log.d("로그 result_img uri 전달 전 확인","${result_uri}")
+//                        result_intent.putExtra("result_img", result_uri.toString())
+
+//                        val imagePath = File(this.getExternalFilesDir(null), "image_url")
+                        //result_intent.putExtra("result_img","${reuslt_file.toString()}")
+
+                        startActivity(result_intent)
+                        finish()
+                    }
+
 
                 }
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -177,6 +337,15 @@ class Input_info : AppCompatActivity() {
                 }
             })
 
+        }
+
+
+        //하단 버튼 이동
+        val home_intent = Intent(this,MainActivity::class.java)
+
+        input_binding.homeBtnInput.setOnClickListener {
+            startActivity(home_intent)
+            finish()
         }
 
     }
