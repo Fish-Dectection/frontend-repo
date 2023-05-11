@@ -2,6 +2,7 @@ package com.example.fishdetection
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
@@ -21,18 +22,31 @@ class Result : AppCompatActivity() {
 
         val currentUri : Uri
 
-        val result = intent.getStringExtra("result")
+        var result = intent.getStringExtra("result")
         Log.d("로그 전달result 전달 확인","${result}")
-        val result_img = intent.getStringExtra("result_img")
-
+        var result_img = intent.getStringExtra("result_img")
         Log.d("로그 result_img 전달 확인","${result_img}")
 
+        val result2 = intent.getStringExtra("result2")
+        Log.d("로그 전달result2 전달 확인","${result2}")
+        val result_img2 = intent.getStringExtra("result_img2")
+        Log.d("로그 result_img2 전달 확인","${result_img2}")
+
+        var photobit: Bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+
+        if(result == "null"){
+            photobit = BitmapFactory.decodeFile(result_img2)
+            result_binding.inputimage.setImageBitmap(photobit)
+            result = result2
+        }
+        else if(result != "null"){
+            currentUri = Uri.parse(result_img)
+
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentUri)
+            result_binding.inputimage.setImageBitmap(bitmap)
+        }
 
 
-        currentUri = Uri.parse(result_img)
-
-        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentUri)
-        result_binding.inputimage.setImageBitmap(bitmap)
 
         val posibleS = "포획 가능"
         val ispossible = result.toString().contains(posibleS)
