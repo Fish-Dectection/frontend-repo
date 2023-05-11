@@ -1,7 +1,9 @@
 package com.example.fishdetection
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,9 +22,13 @@ class Result : AppCompatActivity() {
         val currentUri : Uri
 
         val result = intent.getStringExtra("result")
+        Log.d("로그 전달result 전달 확인","${result}")
         val result_img = intent.getStringExtra("result_img")
-        Log.d("result_img 전달 확인","${result_img}")
-        Log.d("result 전달 확인","${result}")
+
+        Log.d("로그 result_img 전달 확인","${result_img}")
+
+
+
         currentUri = Uri.parse(result_img)
 
         val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentUri)
@@ -77,8 +83,16 @@ class Result : AppCompatActivity() {
 
         val input_intent = Intent(this,Input_info::class.java)
 
-        result_binding.retry.setOnClickListener {
-            startActivity(input_intent)
+//        result_binding.retry.setOnClickListener {
+//            startActivity(input_intent)
+//            finish()
+//        }
+
+        //하단 버튼 이동
+        val home_intent = Intent(this,MainActivity::class.java)
+
+        result_binding.homeBtnResult.setOnClickListener {
+            startActivity(home_intent)
             finish()
         }
     }
