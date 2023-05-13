@@ -95,18 +95,37 @@ class Result : AppCompatActivity() {
             result_binding.regionlen.setText(len1[8]+"  " + "cm")
         }
 
-        val input_intent = Intent(this,Input_info::class.java)
+
 
 //        result_binding.retry.setOnClickListener {
 //            startActivity(input_intent)
 //            finish()
 //        }
 
+        //피드백 페이지 이동
+        val feedbakc_intent = Intent(this,feedback::class.java)
+
+        result_binding.feedbackBtn.setOnClickListener {
+            startActivity(feedbakc_intent)
+            finish()
+        }
+
         //하단 버튼 이동
         val home_intent = Intent(this,MainActivity::class.java)
+        val input_intent = Intent(this,Input_info::class.java)
 
+        //홈 화면 이동
         result_binding.homeBtnResult.setOnClickListener {
             startActivity(home_intent)
+            finish()
+        }
+        //도감 페이지 이동
+        result_binding.collectionBtn.setOnClickListener {
+
+        }
+        // 입력 페이지 이동
+        result_binding.inputBtn.setOnClickListener {
+            startActivity(input_intent)
             finish()
         }
     }

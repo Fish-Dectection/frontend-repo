@@ -235,9 +235,6 @@ class Input_info : AppCompatActivity() {
 
             //image request 형식으로 변형
             val file = File("${image_url}")
-            //val file = File("/Users/dongwonchu/Desktop/fish-detection/frontend-repo/app/src/main/res/drawable/download.png")
-            //val file = File(absolutelyPath("url", this)
-            //val file = File(getRealPathFromURI(currentImg))
             Log.d("로그 확인4","내려가나?")
             val requestfile = RequestBody.create(MediaType.parse("image/png"), file)  //MIME타입
 
@@ -265,66 +262,56 @@ class Input_info : AppCompatActivity() {
                 ){
                     Log.d("로그성공", "${response}")
                     Log.d("로그성공",response.toString())
-                    Log.d("로그성공", response.body().toString())
+                    Log.d("로그성공 중요", response.body().toString())
 
 
                     val result = response.body().toString()
+                    val context = applicationContext
 
-
-
-                    if(checknum==0){
-                        result_intent.putExtra("result","${result}")
-                        Log.d("로그 result_img 전달 전 확인","${postimg}")
-                        result_intent.putExtra("result_img","${postimg}")
-                        result_intent.putExtra("result2","null")
-                        result_intent.putExtra("result_img2","null")
-                        startActivity(result_intent)
+                    //인식 못햇을경우
+                    if(result.toString() == "{\"response\":\"None\"}"){
+                        Log.d("로그인식못함", "인식목함 경우")
+                        val fail_intent = Intent(context,Fail::class.java)
+                        startActivity(fail_intent)
                         finish()
                     }
-                    else if(checknum==1){
+                    //정확도 50이하
 
-//                        val filePath = "/storage/emulated/0/Android/data/com.example.fishdetection/files/result_file"
-                        //val filePath = getExternalFilesDir(null)?.absolutePath + "/result_file"
+                    //두마리 이상일 경우
+
+                    //제대로 인식
+                    else{
+                        if(checknum==0){
+                            result_intent.putExtra("result","${result}")
+                            Log.d("로그 result_img 전달 전 확인","${postimg}")
+                            result_intent.putExtra("result_img","${postimg}")
+                            result_intent.putExtra("result2","null")
+                            result_intent.putExtra("result_img2","null")
+                            startActivity(result_intent)
+                            finish()
+                        }
+                        else if(checknum==1){
+
+                            result_intent.putExtra("result","null")
+                            result_intent.putExtra("result_img","null")
+
+                            result_intent.putExtra("result2","${result}")
+                            Log.d("로그 postimg2","${postimg2}")
+
+                            val result_file= bitmapToFile(postimg2,"result_file")
+                            Log.d("로그 result_img 전달 전 확인","${result_file}")
+
+                            result_intent.putExtra("result_img2","${result_file}")
 
 
-                        //val context: Context = applicationContext
 
-                        result_intent.putExtra("result","null")
-                        result_intent.putExtra("result_img","null")
-
-                        result_intent.putExtra("result2","${result}")
-                        Log.d("로그 postimg2","${postimg2}")
-
-                        val result_file= bitmapToFile(postimg2,"result_file")
-                        Log.d("로그 result_img 전달 전 확인","${result_file}")
-
-                        result_intent.putExtra("result_img2","${result_file}")
-
-
-                        //파일에 저장
-//                        val fileContent = result_file.toString()
-
-//                        try {
-//                            val file = File(filePath)
-//                            file.parentFile?.mkdirs() // 부모 디렉터리가 없으면 생성합니다.
-//                            file.writeText(fileContent) // 파일에 데이터를 씁니다.
-//                            Log.d("로그", "파일 저장 완료: $filePath")
-//                        } catch (e: IOException) {
-//                            Log.e("로그", "파일 저장 실패: $e")
-//                        }
-
-                        //일단 file 형식 바꾸는 것
-//                        val packagename = "com.example.fishdetection.fileprovider"
-//                        val result_uri = FileProvider.getUriForFile(context, packagename, result_file!!)
-//                        Log.d("로그 result_img uri 전달 전 확인","${result_uri}")
-//                        result_intent.putExtra("result_img", result_uri.toString())
-
-//                        val imagePath = File(this.getExternalFilesDir(null), "image_url")
-                        //result_intent.putExtra("result_img","${reuslt_file.toString()}")
-
-                        startActivity(result_intent)
-                        finish()
+                            startActivity(result_intent)
+                            finish()
+                        }
                     }
+
+
+
 
 
                 }

@@ -93,19 +93,23 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn1"/>
+            android:src="@drawable/buttom_btn1"
+            android:id="@+id/homeBtn_fail"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn2"/>
+            android:src="@drawable/buttom_btn2"
+            android:id="@+id/collectionBtn_fail"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn3"/>
+            android:src="@drawable/buttom_btn3"
+            android:id="@+id/inputBtn_fail"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn4"/>
+            android:src="@drawable/buttom_btn4"
+            android:id="@+id/menuBtn_fail"/>
     </LinearLayout>
 
 

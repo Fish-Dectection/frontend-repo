@@ -133,6 +133,7 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/bold_grey"
+                    android:id="@+id/feedbackBtn"
                     />
                 <View
                     android:layout_width="110dp"
@@ -291,15 +292,18 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn2"/>
+            android:src="@drawable/buttom_btn2"
+            android:id="@+id/collectionBtn"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn3"/>
+            android:src="@drawable/buttom_btn3"
+            android:id="@+id/inputBtn"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/buttom_btn4"/>
+            android:src="@drawable/buttom_btn4"
+            android:id="@+id/menuBtn"/>
     </LinearLayout>
 
 
