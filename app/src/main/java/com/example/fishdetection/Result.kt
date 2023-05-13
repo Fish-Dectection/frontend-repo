@@ -70,6 +70,15 @@ class Result : AppCompatActivity() {
             result_binding.fname.setText(name2[1])
         }
 
+        //정확도 추출
+        var acu = result.toString().split(":")
+        Log.d("로그 정확도","${acu[1]}")
+        var acu2 = acu[1].split(",")
+        Log.d("로그 정확도2","${acu2[1]}")
+        if(acu2[1] != null){
+            result_binding.accuracy.setText(acu2[1]+" " + "%")
+        }
+
         //금어기 추출
         var date = result.toString().split(":")
         Log.d("로그 날짜","${date[1]}")
