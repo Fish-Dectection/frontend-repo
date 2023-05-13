@@ -277,7 +277,15 @@ class Input_info : AppCompatActivity() {
                     }
                     //정확도 50이하
 
+
                     //두마리 이상일 경우
+                    else if(result.toString() == "{\"response\":\"한 마리 사진만 입력하세요\"}"){
+                        Log.d("로그 여러마리", "여러개 인식 경우")
+                        //일단 실패 페이지로
+                        val fail_intent = Intent(context,Fail::class.java)
+                        startActivity(fail_intent)
+                        finish()
+                    }
 
                     //제대로 인식
                     else{
