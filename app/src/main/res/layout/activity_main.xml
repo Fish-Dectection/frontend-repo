@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="under the sea (이름)"
+        android:text="fish detection"
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
@@ -20,10 +20,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(로고)"
+        android:text=""
         android:layout_gravity="center"
         android:textColor="@color/black"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:textSize="30dp"/>
 
     <!--    버튼 3개 담는 레이아웃-->

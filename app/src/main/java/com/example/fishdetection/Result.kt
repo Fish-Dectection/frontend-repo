@@ -4,13 +4,15 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.core.net.toUri
 import com.example.fishdetection.databinding.ActivityResultBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 
 class Result : AppCompatActivity() {
 
@@ -20,8 +22,25 @@ class Result : AppCompatActivity() {
         result_binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(result_binding.root)
 
+
         val currentUri : Uri
 
+        //비트맵 파일변환ㄴ
+        fun bitmapToFile(bitmap: Bitmap, fileName: String): File? {
+            val file = File(getExternalFilesDir(null), fileName)
+            try {
+                val stream: OutputStream = FileOutputStream(file)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                stream.flush()
+                stream.close()
+                return file
+            } catch (e: IOException) {
+                e.printStackTrace()
+                return null
+            }
+        }
+
+        //input에서 받아오는 것
         var result = intent.getStringExtra("result")
         Log.d("로그 전달result 전달 확인","${result}")
         var result_img = intent.getStringExtra("result_img")
@@ -32,18 +51,24 @@ class Result : AppCompatActivity() {
         val result_img2 = intent.getStringExtra("result_img2")
         Log.d("로그 result_img2 전달 확인","${result_img2}")
 
+
         var photobit: Bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+
 
         if(result == "null"){
             photobit = BitmapFactory.decodeFile(result_img2)
             result_binding.inputimage.setImageBitmap(photobit)
             result = result2
         }
+
         else if(result != "null"){
             currentUri = Uri.parse(result_img)
-
+            Log.d("로그 cureentui","${currentUri}")
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentUri)
             result_binding.inputimage.setImageBitmap(bitmap)
+
+            val result_file= bitmapToFile(bitmap,"result_file")
+            result_img = result_file.toString()
         }
 
 
@@ -111,13 +136,39 @@ class Result : AppCompatActivity() {
 //            finish()
 //        }
 
+
+
+
         //피드백 페이지 이동
         val feedbakc_intent = Intent(this,feedback::class.java)
 
         result_binding.feedbackBtn.setOnClickListener {
+
+
+
+            Log.d("로그 피즈백 전 fbimg","${result_img}")
+            Log.d("로그 피즈백 전 fbimg2","${result_img2}")
+
+            if(result_img=="null"){ //카메라
+                feedbakc_intent.putExtra("name","${name2[1]}")
+                feedbakc_intent.putExtra("feedback_img","null")
+
+                feedbakc_intent.putExtra("feedback_img2","${result_img2}")
+            }
+
+            //갤러리
+            else if(result_img!="null"){
+                feedbakc_intent.putExtra("name","${name2[1]}")
+                feedbakc_intent.putExtra("feedback_img","${result_img}")
+                feedbakc_intent.putExtra("feedback_img2","null")
+            }
+
             startActivity(feedbakc_intent)
             finish()
         }
+
+
+
 
         //하단 버튼 이동
         val home_intent = Intent(this,MainActivity::class.java)

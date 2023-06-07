@@ -236,6 +236,7 @@ class Input_info : AppCompatActivity() {
             //image request 형식으로 변형
             val file = File("${image_url}")
             Log.d("로그 확인4","내려가나?")
+
             val requestfile = RequestBody.create(MediaType.parse("image/png"), file)  //MIME타입
 
             Log.d("로그 확인4","${requestfile.contentType()}")
@@ -289,15 +290,17 @@ class Input_info : AppCompatActivity() {
 
                     //제대로 인식
                     else{
+                        //갤러리
                         if(checknum==0){
                             result_intent.putExtra("result","${result}")
-                            Log.d("로그 result_img 전달 전 확인","${postimg}")
+                             Log.d("로그 result_img 전달 전 확인","${postimg}")
                             result_intent.putExtra("result_img","${postimg}")
                             result_intent.putExtra("result2","null")
                             result_intent.putExtra("result_img2","null")
                             startActivity(result_intent)
                             finish()
                         }
+                        //카메라
                         else if(checknum==1){
 
                             result_intent.putExtra("result","null")
